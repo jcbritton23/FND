@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Functional Neurological Disorder & Trauma: Evidence-Based Clinical Insights</title>
+    <style>
+        /* --- Global Styles & Variables (Same as before) --- */
+        :root {
+            --blue-light: #e3f2fd; --blue-mid: #90caf9; --blue-dark: #1e88e5; --blue-deep: #1565c0; --text-heading: #1a237e;
+            --green-light: #e8f5e9; --green-mid: #a5d6a7; --green-dark: #388e3c;
+            --purple-light: #f3e5f5; --purple-mid: #ce93d8; --purple-dark: #7b1fa2;
+            --orange-light: #fff3e0; --orange-mid: #ffcc80; --orange-dark: #ef6c00;
+            --red-light: #ffcdd2; --red-mid: #ef9a9a; --red-dark: #c62828;
+            --bg: #f8f9fa; --fg: #343a40; --grey-light: #f1f5f8; --grey-mid: #dee2e6; --grey-dark: #6c757d; --white: #ffffff;
+            --border-radius: 10px; --padding: 1.25em; --shadow: 0 4px 15px rgba(0, 0, 0, 0.06); --shadow-hover: 0 6px 20px rgba(0, 0, 0, 0.1);
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background-color: var(--bg); color: var(--fg); line-height: 1.65; height: 100vh; display: flex; overflow: hidden; font-size: 16px; }
+        h1, h2, h3, h4 { margin-bottom: 0.8em; color: var(--text-heading); font-weight: 600; letter-spacing: -0.5px; }
+        h1 { font-size: 1.8em; } h2 { font-size: 1.5em; padding-bottom: 0.4em; border-bottom: 3px solid var(--blue-mid); }
+        h3 { color: var(--blue-deep); font-size: 1.2em; margin-top: 1.5em; } h4 { color: var(--blue-dark); font-size: 1.05em; font-weight: bold; margin-top: 1.2em; }
+        p, ul, ol { margin-bottom: 1.2em; color: #555; font-size: 0.98rem;}
+        ul { list-style: none; padding-left: 0; } /* Default no bullets */
+        ul.disc-list { list-style: disc; margin-left: 25px; } /* Specific class for bullets */
+        ol { list-style: decimal; margin-left: 25px;}
+        li { margin-bottom: 0.6em; } sup { font-size: 0.7em; vertical-align: super; margin-left: 1px; color: var(--blue-dark); font-weight: bold; }
+        a { color: var(--blue-dark); text-decoration: none; } a:hover { text-decoration: underline; }
+        strong, b { font-weight: 600; color: #222; } small { font-size: 0.85em; color: var(--grey-dark); }
+
+        /* --- Layout --- */
+        .wrapper { display: flex; width: 100%; height: 100%; }
+        nav { width: 250px; background: var(--white); box-shadow: 3px 0 10px rgba(0,0,0,0.04); padding: var(--padding); overflow-y: auto; flex-shrink: 0; border-right: 1px solid var(--grey-mid); display: flex; flex-direction: column; }
+        nav .nav-header { margin-bottom: 1.5em; font-size: 1.1em; color: var(--blue-deep); font-weight: 700; }
+        nav button { display: block; width: 100%; margin: 0.4em 0; padding: 0.9em 1.3em; border: none; border-radius: var(--border-radius); background: var(--grey-light); color: #495057; font-weight: 500; cursor: pointer; text-align: left; transition: all 0.25s ease; }
+        nav button:hover { background-color: var(--blue-light); color: var(--blue-deep); transform: translateX(3px); }
+        nav button.active { background: linear-gradient(90deg, var(--blue-mid), var(--blue-dark)); color: var(--white); font-weight: 600; box-shadow: 0 3px 8px rgba(30, 136, 229, 0.2); }
+        main { flex: 1; overflow-y: auto; padding: calc(var(--padding) * 1.8); }
+        section { display: none; padding-bottom: 2.5em; }
+        section.active { display: block; animation: fadeIn 0.5s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* --- Shared Card Style --- */
+         .dashboard-card { background: var(--white); border-radius: var(--border-radius); padding: var(--padding); box-shadow: var(--shadow); transition: box-shadow 0.3s; margin-bottom: 1.5em; }
+         .dashboard-card:hover { box-shadow: var(--shadow-hover); }
+
+        /* --- Overview Section Layout (Restored Flexbox) --- */
+        #overview .overview-grid { display: flex; flex-wrap: wrap; gap: calc(var(--padding) * 1.5); }
+        #overview .overview-grid > .dashboard-card { flex: 1; min-width: 320px; } /* Apply card style & flex */
+        #overview .intro-card { flex-basis: 100%; background: linear-gradient(135deg, var(--blue-light), var(--white)); border: 1px solid var(--blue-light); }
+        #overview .quick-facts-card { flex-basis: calc(50% - var(--padding) * 0.75); }
+        #overview .comorbidity-card { flex-basis: calc(50% - var(--padding) * 0.75); }
+        /* Other overview styles (highlights, stats, reveal, flip cards, icons) remain the same */
+         .highlight-box { border-left: 5px solid; padding: 0.8em 1em; margin: 1.2em 0; border-radius: 6px; font-weight: 500; }
+        .highlight-box.positive-dx { border-color: var(--green-dark); background-color: var(--green-light); }
+        .highlight-box.stressors { border-color: var(--orange-dark); background-color: var(--orange-light); }
+        .stat-callout { display: flex; align-items: center; margin-bottom: 1em; font-size: 0.95rem; }
+        .stat-callout i { font-size: 1.6em; margin-right: 0.6em; color: var(--blue-dark); width: 30px; text-align: center; }
+        .reveal-button { display: inline-block; padding: 0.7em 1.4em; background-color: var(--blue-dark); color: white; border: none; border-radius: 8px; cursor: pointer; margin-top: 1em; transition: all 0.3s; font-weight: 500; }
+        .reveal-button:hover { background-color: var(--blue-deep); box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .collapsible-content { max-height: 0; overflow: hidden; transition: max-height 0.6s ease-out; margin-top: 1em; border-top: 1px solid var(--grey-mid); padding-top: 0; }
+        .collapsible-content.expanded { max-height: 600px; padding-top: 1em; }
+        .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1em; margin-top: 0.5em;}
+        .card { background-color: transparent; height: 160px; perspective: 1000px; cursor: pointer; }
+        .card-inner { position: relative; width: 100%; height: 100%; transition: transform 0.6s; transform-style: preserve-3d; box-shadow: 0 2px 5px rgba(0,0,0,0.08); border-radius: var(--border-radius); }
+        .card.flipped .card-inner { transform: rotateY(180deg); }
+        .card-face { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 1em; border-radius: var(--border-radius); font-size: 0.9em; text-align: center; }
+        .card-front { background-color: var(--red-mid); color: var(--white); font-weight: bold; }
+        .card-face i { font-size: 1.5em; margin-bottom: 0.5em; }
+        .card-back { background-color: var(--white); color: var(--fg); border: 2px solid var(--red-mid); transform: rotateY(180deg); }
+        .card-back strong { color: var(--red-dark); display: block; margin-bottom: 0.3em; }
+        .comorbidity-card h4 { margin-top: 0; }
+        .comorbidity-prevalence { text-align: center; margin-bottom: 1.5em; }
+        .donut-placeholder { display: inline-block; width: 70px; height: 70px; border-radius: 50%; border: 12px solid var(--grey-mid); border-top-color: var(--blue-dark); transform: rotate(160deg); margin-bottom: 0.5em; }
+        .comorbidity-prevalence span { display: block; font-size: 1.1em; font-weight: 600; color: var(--blue-deep); }
+        .cluster-concept { background-color: var(--blue-light); padding: 0.8em 1em; border-radius: 6px; margin: 1.2em 0; border-left: 4px solid var(--blue-dark); }
+        .icon-list { list-style: none; padding: 0; margin: 1.2em 0 0 0; display: flex; flex-wrap: wrap; gap: 0.8em; }
+        .icon-list li { display: flex; align-items: center; background-color: var(--grey-light); padding: 0.5em 1em; border-radius: 15px; cursor: default; position: relative; font-size: 0.9rem; transition: background-color 0.2s; }
+        .icon-list li:hover { background-color: var(--blue-light); }
+        .icon-list i { margin-right: 0.6em; color: var(--blue-dark); width: 18px; text-align: center; }
+        .icon-list li .tooltip { visibility: hidden; opacity: 0; position: absolute; bottom: 120%; left: 50%; transform: translateX(-50%); background-color: rgba(50, 50, 50, 0.9); color: white; padding: 6px 10px; border-radius: 5px; font-size: 0.85em; width: max-content; max-width: 280px; transition: opacity 0.3s; pointer-events: none; z-index: 10; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
+        .icon-list li:hover .tooltip { visibility: visible; opacity: 1; }
+
+
+        /* --- Conceptualization Section (NEW Structure) --- */
+        #biopsychosocial h3 { margin-top: 0; }
+        .bps-card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5em; margin-bottom: 1.5em; }
+        .bps-card { background: var(--white); border-radius: var(--border-radius); padding: var(--padding); box-shadow: var(--shadow); border-top: 5px solid; /* Removed cursor:pointer */ }
+        /* No expansion styles needed */
+        .bps-card .card-header { display: flex; align-items: center; gap: 0.7em; margin-bottom: 1em; } /* Increased margin */
+        .bps-card i { font-size: 1.5em; }
+        .bps-bio { border-top-color: var(--green-dark); } .bps-bio i { color: var(--green-dark); }
+        .bps-psy { border-top-color: var(--orange-dark); } .bps-psy i { color: var(--orange-dark); }
+        .bps-soc { border-top-color: var(--purple-dark); } .bps-soc i { color: var(--purple-dark); }
+        .bps-card h4 { margin: 0; color: var(--text-heading); font-size: 1.15em; }
+        .bps-card-content { margin-top: 0.5em; } /* Content always visible */
+        .bps-card-content ul { list-style: disc; margin-left: 20px; font-size: 0.95rem; padding-left: 5px;}
+         .brain-info-list { margin-top: 0.8em; padding-left: 10px; } /* Style for brain list within Bio card */
+         .brain-info-list li { font-weight: 500; }
+         .brain-info-list small { font-weight: normal; color: #555; margin-left: 5px;}
+
+        .lazzari-model-static { text-align: center; margin-top: 2em; padding: 1em; background: var(--white); border-radius: var(--border-radius); box-shadow: var(--shadow); }
+        .lazzari-model-static img { max-width: 100%; height: auto; border: 1px solid var(--grey-mid); margin-bottom: 0.5em;}
+        .lazzari-model-static figcaption { font-size: 0.9em; color: var(--grey-dark); font-style: italic; }
+
+        /* --- Treatment Section (Styles mostly unchanged, ensure grid handles 5 items) --- */
+         .treatment-intro { text-align: center; margin-bottom: 2em; background: var(--grey-light); padding: 1em; border-radius: var(--border-radius); }
+         .integration-graphic { display: flex; justify-content: center; align-items: center; gap: 8px; margin: 1em 0; }
+         .gear { display: flex; align-items:center; justify-content:center; width: 50px; height: 50px; border-radius: 50%; text-align: center; font-size: 1.2em; font-weight: bold; color: var(--white); box-shadow: inset 0 0 5px rgba(0,0,0,0.2); }
+         .gear.rehab { background-color: var(--green-dark); } .gear.psych { background-color: var(--red-dark); } .gear.trauma { background-color: var(--orange-dark); } .gear.comorbid { background-color: var(--purple-dark); } .gear.context { background-color: var(--blue-dark); } /* Adjusted context color */
+         .treatment-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5em; margin-bottom: 2em; }
+         .treatment-module { background: var(--white); border-radius: var(--border-radius); padding: var(--padding); box-shadow: var(--shadow); border-top: 5px solid; }
+         .module-foundational { border-top-color: var(--blue-dark); } .module-rehab { border-top-color: var(--green-dark); }
+         .module-psych { border-top-color: var(--red-dark); } .module-trauma { border-top-color: var(--orange-dark); } .module-comorbid { border-top-color: var(--purple-dark); } /* Style for new module */
+         .treatment-module h4 { margin-top: 0; display: flex; align-items: center; gap: 0.5em; color: var(--text-heading); font-size: 1.15em;}
+         .treatment-module h4 i { width: 20px; text-align: center; }
+         .module-foundational h4 i { color: var(--blue-dark); } .module-rehab h4 i { color: var(--green-dark); }
+         .module-psych h4 i { color: var(--red-dark); } .module-trauma h4 i { color: var(--orange-dark); } .module-comorbid h4 i { color: var(--purple-dark); }
+         .treatment-module ul { list-style: disc; margin-left: 25px; } /* Ensure bullets */
+         .integration-note { background-color: var(--blue-light); padding: 0.7em 1em; margin-top: 1em; border-radius: 6px; border-left: 4px solid var(--blue-dark); font-style: italic; font-size: 0.9em; }
+         .trauma-module-section { margin-top: 1.5em; padding-top: 1em; border-top: 1px dashed var(--grey-mid); }
+         .trauma-module-section h5 { font-size: 1em; color: var(--orange-dark); margin-bottom: 0.5em; }
+         .trauma-impact-viz { display: flex; justify-content: space-around; text-align: center; margin: 1em 0; padding: 0.5em; background: var(--orange-light); border-radius: 6px;}
+         .trauma-impact-viz div { font-size: 0.9em;}
+         .trauma-impact-viz i { display: block; font-size: 1.5em; margin-bottom: 0.3em; }
+         .trauma-impact-viz .increase { color: var(--red-dark); }
+         .trauma-impact-viz .decrease { color: var(--green-dark); }
+         .trauma-impact-viz .alert { color: var(--orange-dark); }
+         .clinical-considerations { background: linear-gradient(135deg, var(--white), var(--grey-light)); border: 1px solid var(--grey-mid); border-radius: var(--border-radius); padding: var(--padding); box-shadow: var(--shadow); text-align: center; margin-top: 1.5em;}
+         .clinical-considerations h3 { color: var(--blue-deep); display: flex; align-items: center; justify-content: center; gap: 0.5em;}
+         .clinical-considerations ul { list-style: none; padding: 0; text-align: left; display: inline-block; margin-top: 1em; }
+         .clinical-considerations li { margin-bottom: 0.6em; }
+         .clinical-considerations i { color: var(--blue-dark); margin-right: 0.5em; width: 18px; text-align: center;}
+
+        /* --- References Section --- */
+        #references { background: var(--white); padding: var(--padding); border-radius: var(--border-radius); box-shadow: var(--shadow); margin-top: 2em;}
+        #references ol { list-style: decimal; margin-left: 20px; padding-left: 0; } /* Use numbered list */
+        #references li { margin-bottom: 0.8em; padding-bottom: 0.8em; border-bottom: 1px dotted var(--grey-mid); font-size: 0.9rem; }
+        #references li:last-child { border-bottom: none; }
+
+        /* --- Responsiveness --- */
+         @media (max-width: 1100px) {
+              .bps-card-grid { grid-template-columns: 1fr; }
+              .treatment-grid { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+         }
+         @media (max-width: 900px) {
+             #overview .overview-grid > .quick-facts-card,
+             #overview .overview-grid > .comorbidity-card { flex-basis: 100%; }
+         }
+        @media (max-width: 768px) {
+            body { font-size: 15px; }
+            .wrapper { flex-direction: column; height: auto; overflow: visible;}
+            nav { width: 100%; height: auto; overflow-y: visible; border-right: none; border-bottom: 1px solid var(--grey-mid); flex-direction: row; flex-wrap: wrap; justify-content: center; padding: 0.5em; gap: 0.5em;}
+            nav button { width: auto; flex-grow: 1; min-width: 100px; text-align: center; padding: 0.7em 1em;}
+            main { overflow-y: visible; padding: var(--padding); }
+            h2 { font-size: 1.3em; } h3 { font-size: 1.1em; }
+            .overview-grid { gap: var(--padding); }
+            .card-grid { grid-template-columns: 1fr; }
+            .treatment-grid { grid-template-columns: 1fr; }
+        }
+
+    </style>
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+</head>
+<body>
+    <div class="wrapper">
+        <nav>
+            <!-- Navigation Buttons -->
+            <button data-target="overview" class="active"><i class="fas fa-tachometer-alt"></i> Overview</button>
+            <button data-target="biopsychosocial"><i class="fas fa-sitemap"></i> BPS Factors</button>
+            <button data-target="treatment"><i class="fas fa-route"></i> Treatment Approach</button>
+            <button data-target="references"><i class="fas fa-book-open"></i> References</button>
+        </nav>
+
+        <main>
+            <!-- Overview Section -->
+            <section id="overview" class="active">
+                <!-- Content from Plan 5.0: Intro Card, Quick Facts Card (with myth reveal), Comorbidity Card -->
+                 <div class="overview-grid">
+                    <div class="intro-card dashboard-card">
+                        <h1>Functional Neurological Disorder & Trauma: Evidence-Based Clinical Insights</h1>
+                        <p>An interactive resource synthesizing current knowledge on FND diagnosis, the significant role of trauma and comorbidities, and integrated, evidence-based treatment strategies. Designed for clinicians and advanced students.</p>
+                    </div>
+                     <div class="quick-facts-card dashboard-card">
+                        <h3>FND Essentials</h3>
+                        <div class="highlight-box positive-dx">
+                           <strong>Diagnosis is POSITIVE, Not Exclusionary</strong><sup>[1]</sup><br>
+                           Relies on specific neurological signs inconsistent with known disease patterns.
+                        </div>
+                        <div class="highlight-box stressors">
+                             <strong>Role of Stressors & Maltreatment</strong><br>
+                             Common risk factors (~3x higher rate vs controls)<sup>[3]</sup>. Emotional Neglect strongest childhood link (OR 5.6)<sup>[3]</sup>. BUT: Not required for diagnosis.<sup>[1, 3]</sup>
+                        </div>
+                         <div class="stat-callout">
+                             <i class="fas fa-laptop-medical"></i>
+                             <div>Affects brain <strong>function</strong> ('software'), not structure ('hardware').<sup>[1, 2]</sup></div>
+                         </div>
+                        <button class="reveal-button" id="myth-reveal-button">Debunk Common Myths</button>
+                        <div class="collapsible-content" id="myth-cards-container">
+                             <h4>Click Cards to Reveal Facts:</h4>
+                             <div class="card-grid">
+                                <div class="card"> <div class="card-inner"> <div class="card-face card-front"><i class="fas fa-theater-masks"></i>Myth: Faking Symptoms</div> <div class="card-face card-back"><strong>Fact:</strong> Involuntary symptoms from altered brain function.<sup>[1, 2]</sup></div> </div> </div>
+                                <div class="card"> <div class="card-inner"> <div class="card-face card-front"><i class="fas fa-bolt"></i>Myth: Single Trauma Cause</div> <div class="card-face card-back"><strong>Fact:</strong> Trauma/stress common, but not required. Dx via positive signs.<sup>[3, 1]</sup></div> </div> </div>
+                                 <div class="card"> <div class="card-inner"> <div class="card-face card-front"><i class="fas fa-eye-slash"></i>Myth: Abuse is Main Risk</div> <div class="card-face card-back"><strong>Fact:</strong> Emotional Neglect has *strongest* childhood link (OR 5.6).<sup>[3]</sup></div> </div> </div>
+                                 <div class="card"> <div class="card-inner"> <div class="card-face card-front"><i class="fas fa-search-minus"></i>Myth: Dx of Exclusion</div> <div class="card-face card-back"><strong>Fact:</strong> Made via *positive* neurological findings.<sup>[1, 2]</sup></div> </div> </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="comorbidity-card dashboard-card">
+                        <h3>The Comorbidity Landscape</h3>
+                        <div class="comorbidity-prevalence">
+                            <div class="donut-placeholder" title="Almost All Have ≥1 Psychiatric Comorbidity"></div>
+                            <span>Almost All Have ≥1 Psychiatric Comorbidity<sup>[5]</sup></span>
+                        </div>
+                        <div class="cluster-concept">
+                             <p><i class="fas fa-link"></i> Conditions often form a complex clinical *cluster*, suggesting foundational links and requiring integrated care.<sup>[5]</sup></p>
+                        </div>
+                        <h4>Common Comorbidities (Hover for Info):</h4>
+                        <ul class="icon-list">
+                             <li><i class="fas fa-shield-alt"></i> PTSD <span class="tooltip">Common (esp. Trauma Subtype[4]). Linked to ↑severity, ↓health, dissociation. Needs targeted Tx.[5, 4]</span></li>
+                             <li><i class="fas fa-cloud-moon"></i> Mood Disorders <span class="tooltip">Depression common, impacts QoL. Treat concurrently.[1, 2]</span></li>
+                             <li><i class="fas fa-wind"></i> Anxiety Disorders <span class="tooltip">GAD, Panic common. Can exacerbate symptoms. Address with CBT/meds.[1, 2]</span></li>
+                             <li><i class="fas fa-users"></i> BPD Features <span class="tooltip">Emotional dysregulation impacts FND. Consider DBT principles.[5]</span></li>
+                             <li><i class="fas fa-puzzle-piece"></i> ASD Features <span class="tooltip">Potential overlap. Sensory issues key in rehab. Adapt communication.[5]</span></li>
+                             <li><i class="fas fa-comment-dots"></i> Alexithymia <span class="tooltip">Difficulty ID'ing emotions impacts therapy. Needs specific focus.[4, 5]</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Conceptualization Section -->
+            <section id="biopsychosocial">
+                <h2>Conceptualizing FND: Biopsychosocial Factors</h2>
+                <p>Understanding FND requires considering interacting biological, psychological, and social factors. Explore key elements below.</p>
+
+                <div class="bps-card-grid">
+                    <!-- Biological Card (Content always visible, includes Brain Info) -->
+                    <div class="bps-card bps-bio dashboard-card"> <!-- Add dashboard-card class -->
+                        <div class="card-header"> <i class="fas fa-dna"></i> <h4>Biological Factors</h4> </div>
+                        <div class="bps-card-content">
+                            <ul class="disc-list">
+                                <li>Focus on altered brain **function** ('software'), not primary structure.<sup>[1, 2]</sup></li>
+                                <li>Altered network connectivity & processing.</li>
+                                <li>Role of <strong>Neurosensitivity</strong> (heightened reactivity).<sup>[5]</sup></li>
+                                <li>Potential influence of early neurodevelopment.<sup>[5]</sup></li>
+                                <li>Hypothesized role of neuroinflammation post-trauma.<sup>[5]</sup></li>
+                            </ul>
+                            <h4 style="margin-top: 1em; font-size: 1.0em;">Key Brain Area Functions Altered:</h4>
+                             <ul class="brain-info-list disc-list">
+                                 <li><strong>SMA:</strong> <small>Motor planning/initiation deficits<sup>[1]</sup></small></li>
+                                 <li><strong>Thalamus:</strong> <small>Sensory gating/relay issues<sup>[1]</sup></small></li>
+                                 <li><strong>Amygdala:</strong> <small>Emotion/threat processing alterations, esp. w/ trauma<sup>[4]</sup></small></li>
+                                 <li><strong>Insula:</strong> <small>Interoception/self-awareness/dissociation link<sup>[4]</sup></small></li>
+                             </ul>
+                        </div>
+                    </div>
+
+                    <!-- Psychological Card (Content always visible) -->
+                    <div class="bps-card bps-psy dashboard-card"> <!-- Add dashboard-card class -->
+                         <div class="card-header"> <i class="fas fa-head-side-virus"></i> <h4>Psychological Factors</h4> </div>
+                         <div class="bps-card-content">
+                             <ul class="disc-list">
+                                 <li><strong>Alexithymia:</strong> Difficulty identifying/expressing emotions impacts processing, therapy.<sup>[4, 5]</sup></li>
+                                 <li><strong>Dissociation:</strong> Common, especially with PNES presentation.<sup>[5]</sup></li>
+                                 <li><strong>Coping Styles:</strong> Avoidance, safety behaviors can maintain symptoms.<sup>[1]</sup></li>
+                                 <li><strong>Trauma History:</strong> PTSD symptoms, trauma-related cognitions/schemas.<sup>[4]</sup></li>
+                                 <li><strong>Personality Traits:</strong> BPD features (emotional dysregulation) relevant.<sup>[5]</sup></li>
+                                 <li><strong>Emotional Dysregulation:</strong> Central mechanism linking stress to somatic symptoms.<sup>[5]</sup></li>
+                             </ul>
+                        </div>
+                    </div>
+
+                    <!-- Social Card (Content always visible) -->
+                    <div class="bps-card bps-soc dashboard-card"> <!-- Add dashboard-card class -->
+                         <div class="card-header"> <i class="fas fa-users"></i> <h4>Social & Environmental Factors</h4> </div>
+                         <div class="bps-card-content">
+                             <ul class="disc-list">
+                                <li><strong>Early Life Adversity:</strong> Esp. Emotional Neglect (high OR)<sup>[3]</sup>, Abuse.<sup>[3]</sup></li>
+                                <li><strong>Interpersonal Trauma History:</strong> Beyond childhood.<sup>[5]</sup></li>
+                                <li><strong>Current Life Stressors:</strong> Can precipitate or exacerbate FND.<sup>[3, 5]</sup></li>
+                                <li><strong>Social Support:</strong> Quality impacts coping and outcomes.</li>
+                                <li><strong>Cultural Factors:</strong> Influence symptom expression and illness beliefs.</li>
+                                <li><strong>Stigma:</strong> Can hinder help-seeking and recovery.<sup>[5 discussion]</sup></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                 <!-- Static Lazzari Model Image -->
+                 <div class="lazzari-model-static dashboard-card">
+                     <h4>Reference Model: Proposed Comorbidity Pathways</h4>
+                     <img src="LazzariModel.png" alt="Lazzari Biopsychosocial Pathway Model for FND/PNES">
+                     <figcaption>Figure illustrates how factors might interact (Adapted from Lazzari et al., 2024)<sup>[5]</sup>. Provides context for the BPS factors.</figcaption>
+                 </div>
+            </section>
+
+            <!-- Treatment Section -->
+            <section id="treatment">
+                <!-- Content from Plan 4.1: Integration graphic, 5 modules (Foundational, Rehab, Psych, Trauma, Comorbidities), Considerations card -->
+                 <h2>Crafting an Integrated & Tailored Treatment Plan</h2>
+                 <div class="treatment-intro dashboard-card">
+                    <div class="integration-graphic">
+                         <span class="gear rehab" title="Rehabilitation"><i class="fas fa-dumbbell"></i></span>
+                         <span class="gear psych" title="Psychological Therapy"><i class="fas fa-comment-dots"></i></span>
+                         <span class="gear trauma" title="Trauma Tx"><i class="fas fa-shield-heart"></i></span>
+                         <span class="gear comorbid" title="Comorbidity Tx"><i class="fas fa-puzzle-piece"></i></span>
+                         <span class="gear context" title="Patient Context"><i class="fas fa-user"></i></span>
+                    </div>
+                    <p>Effective FND treatment requires flexibility and synergy between modalities. Collaboration across disciplines is paramount.<sup>[1, 2]</sup></p>
+                 </div>
+
+                 <div class="treatment-grid">
+                    <!-- Module Cards Content Here -->
+                     <div class="treatment-module module-foundational">
+                         <h4><i class="fas fa-flag"></i> Foundational Pillars</h4>
+                          <ul class="disc-list">
+                            <li><strong>Positive Diagnosis & Psychoeducation:</strong> Essential first step for alliance. Validate symptoms.<sup>[1, 2]</sup></li>
+                            <li><strong>Multidisciplinary Team Activation:</strong> Define roles (Neuro, Psych, PT, OT, SLP). Coordinate care.<sup>[1, 2]</sup></li>
+                            <li><strong>Set Patient-Centered Goals:</strong> Focus on functional targets.</li>
+                          </ul>
+                     </div>
+                      <div class="treatment-module module-rehab">
+                          <h4><i class="fas fa-running"></i> Rehabilitation Strategies</h4>
+                          <ul class="disc-list">
+                             <li><strong>PT/OT/SLP:</strong> Use distraction, automatic movement, ADL strategies. Adapt for sensory profile.<sup>[1, 2]</sup></li>
+                          </ul>
+                          <div class="integration-note">Rehab progress informs psych pacing & vice-versa. Requires team communication.</div>
+                      </div>
+                      <div class="treatment-module module-psych">
+                          <h4><i class="fas fa-comment-dots"></i> Psychological Therapies</h4>
+                           <ul class="disc-list">
+                             <li><strong>CBT (Core):</strong> Target unhelpful thoughts, avoidance, safety behaviors. Stress management.<sup>[1, 2]</sup></li>
+                             <li><strong>Other Modalities:</strong> Hypnosis (Motor FND evidence<sup>[1]</sup>), Mindfulness/ACT (Emotion Reg<sup>[4]</sup>).</li>
+                          </ul>
+                          <div class="integration-note">Address alexithymia if present. Coping skills support rehab engagement.</div>
+                      </div>
+                      <div class="treatment-module module-trauma">
+                          <h4><i class="fas fa-shield-heart"></i> Addressing Trauma</h4>
+                           <div class="trauma-module-section">
+                               <h5>Identifying Trauma Impact & "Subtype"</h5>
+                               <div class="trauma-impact-viz">
+                                   <div><i class="fas fa-arrow-up increase"></i> Severity<sup>[4]</sup></div>
+                                   <div><i class="fas fa-notes-medical"></i> Phys Health<sup>[4]</sup></div>
+                                   <div><i class="fas fa-brain alert"></i> Circuit Impact<sup>[4]</sup></div>
+                               </div>
+                               <p>Assess PTSD & Maltreatment (esp. Neglect<sup>[3]</sup>). Presence linked to worse outcomes ("Trauma Subtype" heuristic).<sup>[4]</sup></p>
+                           </div>
+                          <div class="trauma-module-section">
+                              <h5>Trauma-Focused Treatment</h5>
+                               <ul class="disc-list">
+                                <li><strong>Stabilization First:</strong> Essential before processing.</li>
+                                <li><strong>Options (Patient Ready):</strong> PE, EMDR, CPT, Psychodynamic, Sensorimotor.<sup>[1, 4]</sup></li>
+                               </ul>
+                          </div>
+                           <div class="integration-note">Requires careful timing & close team coordination to manage potential destabilization.</div>
+                      </div>
+                      <div class="treatment-module module-comorbid">
+                          <h4><i class="fas fa-puzzle-piece"></i> Managing Comorbidities</h4>
+                          <ul class="disc-list">
+                            <li><strong>BPD:</strong> Consider DBT principles for emotional regulation.<sup>[5]</sup></li>
+                            <li><strong>ASD:</strong> Adapt communication & sensory environment.<sup>[5]</sup></li>
+                            <li><strong>Alexithymia:</strong> Specific focus on emotion ID/expression needed.<sup>[4, 5]</sup></li>
+                            <li><strong>Mood/Anxiety:</strong> Treat concurrently (SSRIs, therapy).<sup>[1, 2]</sup></li>
+                            <li><strong>Pharmacotherapy:</strong> For *comorbidities*, not FND itself.<sup>[1, 2]</sup></li>
+                          </ul>
+                          <div class="integration-note">Treating underlying comorbidities directly supports FND recovery.</div>
+                     </div>
+                 </div>
+
+                 <div class="clinical-considerations dashboard-card">
+                     <h3><i class="fas fa-clipboard-check"></i> Integrating the Approach: Key Considerations</h3>
+                      <ul>
+                         <li><i class="fas fa-stethoscope"></i> Primary FND Symptom Type(s)?</li>
+                         <li><i class="fas fa-user-injured"></i> Trauma Profile & "Subtype"? Readiness?</li>
+                          <li><i class="fas fa-puzzle-piece"></i> Key Comorbidities Impacting Care (BPD, ASD, Alexithymia)?</li>
+                          <li><i class="fas fa-handshake"></i> Therapeutic Alliance & Motivation?</li>
+                          <li><i class="fas fa-users"></i> Social Context (Support, Stressors, Culture)?</li>
+                          <li><i class="fas fa-chart-line"></i> Relevant Prognostic Factors?<sup>[1]</sup></li>
+                          <li><i class="fas fa-comments"></i> Need for Team Communication?</li>
+                     </ul>
+                 </div>
+            </section>
+
+            <!-- References Section -->
+            <section id="references">
+                 <h2>References</h2>
+                 <ol>
+                    <li>
+                        Espay, A. J., Aybek, S., Carson, A., Edwards, M. J., Goldstein, L. H., Hallett, M., LaFaver, K., LaFrance, Jr, W. C., Lang, A. E., Nicholson, T., Nielsen, G., Reuber, M., Voon, V., Stone, J., & Morgante, F. (2018). Current concepts in diagnosis and treatment of functional neurological disorders. <em>JAMA Neurology</em>, <em>75</em>(9), 1132–1141. <a href="https://doi.org/10.1001/jamaneurol.2018.1264" target="_blank" rel="noopener noreferrer">https://doi.org/10.1001/jamaneurol.2018.1264</a>
+                    </li>
+                    <li>
+                        Lazzari, C., Nikolou-Walker, E., Liu, L. Q., & Rabottini, M. (2024). Psychiatric comorbidities in functional neurological disorders and psychogenic non-epileptic seizures: A systematic review and policy recommendations for improving assessment and treatment. <em>Neuropsychiatric Disease and Treatment</em>, <em>20</em>, 2313–2331. <a href="https://doi.org/10.2147/NDT.S491376" target="_blank" rel="noopener noreferrer">https://doi.org/10.2147/NDT.S491376</a>
+                    </li>
+                    <li>
+                        Ludwig, L., Pasman, J. A., Nicholson, T., Aybek, S., David, A. S., Tuck, S., Kanaan, R. A., Roelofs, K., Carson, A., & Stone, J. (2018). Stressful life events and maltreatment in conversion (functional neurological) disorder: Systematic review and meta-analysis of case-control studies. <em>The Lancet Psychiatry</em>, <em>5</em>(4), 307–320. <a href="https://doi.org/10.1016/S2215-0366(18)30051-8" target="_blank" rel="noopener noreferrer">https://doi.org/10.1016/S2215-0366(18)30051-8</a>
+                    </li>
+                    <li>
+                        O'Neal, M. A., & Baslet, G. (2018). Treatment for patients with a functional neurological disorder (conversion disorder): An integrated approach. <em>American Journal of Psychiatry</em>, <em>175</em>(4), 307–314. <a href="https://doi.org/10.1176/appi.ajp.2017.17040450" target="_blank" rel="noopener noreferrer">https://doi.org/10.1176/appi.ajp.2017.17040450</a>
+                    </li>
+                     <li>
+                        Paredes-Echeverri, S., Guthrie, A. J., & Perez, D. L. (2022). Toward a possible trauma subtype of functional neurological disorder: Impact on symptom severity and physical health. <em>Frontiers in Psychiatry</em>, <em>13</em>, 1040911. <a href="https://doi.org/10.3389/fpsyt.2022.1040911" target="_blank" rel="noopener noreferrer">https://doi.org/10.3389/fpsyt.2022.1040911</a>
+                    </li>
+                 </ol>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- Section Navigation ---
+            const navButtons = document.querySelectorAll('nav button');
+            const sections = document.querySelectorAll('main section');
+            const mainContent = document.querySelector('main');
+
+            function showSection(targetId) {
+                sections.forEach(section => {
+                    section.style.display = section.id === targetId ? 'block' : 'none';
+                    section.classList.toggle('active', section.id === targetId);
+                });
+                navButtons.forEach(button => {
+                    button.classList.toggle('active', button.getAttribute('data-target') === targetId);
+                });
+                mainContent.scrollTop = 0;
+            }
+
+            navButtons.forEach(button => {
+                button.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const targetId = button.getAttribute('data-target');
+                    showSection(targetId);
+                });
+            });
+            showSection('overview'); // Default view
+
+            // --- Myth Reveal Button & Flip Cards ---
+            const mythRevealButton = document.getElementById('myth-reveal-button');
+            const mythCardsContainer = document.getElementById('myth-cards-container');
+            const mythCards = mythCardsContainer?.querySelectorAll('.card'); // Select only myth cards
+
+             if(mythRevealButton && mythCardsContainer) {
+                 mythRevealButton.addEventListener('click', () => {
+                     mythCardsContainer.classList.toggle('expanded');
+                     mythRevealButton.textContent = mythCardsContainer.classList.contains('expanded') ? 'Hide Myths' : 'Debunk Common Myths';
+                 });
+             }
+            mythCards?.forEach(card => { // Only add flip to myth cards
+                card.addEventListener('click', () => {
+                    card.classList.toggle('flipped');
+                });
+            });
+
+            // --- Tooltip Logic for Comorbidity Icons ---
+            const iconListItems = document.querySelectorAll('.icon-list li');
+             iconListItems.forEach(item => {
+                 const tooltip = item.querySelector('.tooltip');
+                 if(tooltip){
+                    item.addEventListener('mouseenter', () => { tooltip.style.visibility = 'visible'; tooltip.style.opacity = 1; });
+                    item.addEventListener('mouseleave', () => { tooltip.style.visibility = 'hidden'; tooltip.style.opacity = 0; });
+                 }
+             });
+
+             // --- BPS Cards - No JS needed for expansion anymore ---
+
+        });
+    </script>
+</body>
+</html>
